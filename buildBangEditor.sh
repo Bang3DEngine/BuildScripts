@@ -8,8 +8,8 @@
 # Remove previous one
 BUILD_DST_NAME="${OS_NAME}"
 BUILD_DST_DIR="/var/www/html/BangBuilds/${OS_NAME}"
-PKG_SRC_NAME="BangEditor"
-PKG_DST_NAME="BangEditor_${OS_NAME}"
+PKG_SRC_NAME="BangEditor.tar.gz"
+PKG_DST_NAME="BangEditor_${OS_NAME}.tar.gz"
 
 # Make space removing all images and containers
 echo "Removing existing containers and images to make some room..."
@@ -33,6 +33,6 @@ CONT_ID=$(docker ps -q -l)
 echo "Retrieving results from $CONT_ID..."
 
 mkdir -p ${BUILD_DST_DIR}
-docker cp $CONT_ID:/BangEditor/Scripts/BuildPackage/BangEditor.tar.gz ${BUILD_DST_DIR}/${PKG_SRC_NAME}
+docker cp $CONT_ID:/BangEditor/Scripts/BuildPackage/${PKG_SRC_NAME} ${BUILD_DST_DIR}/${PKG_DST_NAME}
 
 exit 0
